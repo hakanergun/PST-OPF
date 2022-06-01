@@ -8,8 +8,8 @@ function constraint_ohms_y_from_pst(pm::_PM.AbstractPowerModel, i::Int; nw::Int=
     t_idx = (i, t_bus, f_bus)
 
     g, b = _PM.calc_branch_y(pst)
-    g_fr = pst["g_fr"]
-    b_fr = pst["b_fr"]
+    g_fr = 0
+    b_fr = 0
 
     constraint_ohms_y_from_pst(pm, nw, i, f_bus, t_bus, f_idx, t_idx, g, b, g_fr, b_fr)
 end
@@ -22,8 +22,8 @@ function constraint_ohms_y_to_pst(pm::_PM.AbstractPowerModel, i::Int; nw::Int=_P
     t_idx = (i, t_bus, f_bus)
 
     g, b = _PM.calc_branch_y(pst)
-    g_to = pst["g_to"]
-    b_to = pst["b_to"]
+    g_to = 0
+    b_to = 0
 
     constraint_ohms_y_to_pst(pm, nw, i, f_bus, t_bus, f_idx, t_idx, g, b, g_to, b_to)
 end
@@ -43,5 +43,5 @@ function constraint_power_balance(pm::_PM.AbstractPowerModel, i::Int; nw::Int=_P
     bus_gs = Dict(k => _PM.ref(pm, nw, :shunt, k, "gs") for k in bus_shunts)
     bus_bs = Dict(k => _PM.ref(pm, nw, :shunt, k, "bs") for k in bus_shunts)
 
-    constraint_power_balance(pm, nw, i, bus_arcs, bus_arcs_pst, bus_gens, bus_loads, bus_gs, bus_pd, bus_qd)
+    constraint_power_balance(pm, nw, i, bus_arcs, bus_arcs_pst, bus_gens, bus_loads, bus_gs, bus_bs, bus_pd, bus_qd)
 end
