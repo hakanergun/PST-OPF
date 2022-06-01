@@ -12,7 +12,10 @@ function constraint_ohms_y_from_pst(pm::_PM.AbstractACPModel, n::Int, i::Int, f_
     JuMP.@NLconstraint(pm.model, p_fr ==  (g+g_fr)*(vm_fr)^2 - g*vm_fr*vm_to*cos(va_fr-va_to-alpha) + -b*vm_fr*vm_to*sin(va_fr-va_to-alpha) )
     JuMP.@NLconstraint(pm.model, q_fr == -(b+b_fr)*(vm_fr)^2 + b*vm_fr*vm_to*cos(va_fr-va_to-alpha) + -g*vm_fr*vm_to*sin(va_fr-va_to-alpha) )
 end
-
+"""
+constraint_ohms_y_to_pst
+this function foes somthing
+"""
 function constraint_ohms_y_to_pst(pm::_PM.AbstractACPModel, n::Int, i::Int, f_bus, t_bus, f_idx, t_idx, g, b, g_to, b_to)
     alpha = _PM.var(pm, n,  :psta, i)
     p_to  = _PM.var(pm, n,  :ppst, t_idx)
@@ -24,7 +27,7 @@ function constraint_ohms_y_to_pst(pm::_PM.AbstractACPModel, n::Int, i::Int, f_bu
 
     JuMP.@NLconstraint(pm.model, p_to ==  (g+g_to)*vm_to^2 - g*vm_to*vm_fr*cos(va_to-va_fr+alpha) + -b*vm_to*vm_fr*sin(va_to-va_fr+alpha) )
     JuMP.@NLconstraint(pm.model, q_to == -(b+b_to)*vm_to^2 + b*vm_to*vm_fr*cos(va_to-va_fr+alpha) + -g*vm_to*vm_fr*sin(va_to-va_fr+alpha) )
-    end
+end
 
 function constraint_limits_pst(pm::_PM.AbstractACPModel, i::Int; nw::Int=_PM.nw_id_default)
     pst = _PM.ref(pm, nw, :pst, i)
