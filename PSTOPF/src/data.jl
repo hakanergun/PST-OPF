@@ -1,4 +1,5 @@
-function scale_pst_data!(data, MVAbase)
+function scale_pst_data!(data)
+    MVAbase = data["baseMVA"]
     rescale_power = x -> x/MVAbase
     for (p, pst) in data["pst"]
         _PM._apply_func!(pst, "rate_a", rescale_power)

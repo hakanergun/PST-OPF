@@ -53,7 +53,7 @@ mpc.branch = [
 ];
 
 %% pst data
-%column_names%	f_bus	t_bus	br_r	br_x	br_b	rateA	rateB	rateC	angle	status	angmin	angmax
+%column_names%	f_bus	t_bus	br_r	br_x	br_b	rate_a	rate_b	rate_c	angle	status	angmin	angmax
 mpc.pst = [
 	6	 3	 0.00097	 0.0097	 0.0	 426.0	 426.0	 426.0	  0.0	 1	 -30	 30;
 ];

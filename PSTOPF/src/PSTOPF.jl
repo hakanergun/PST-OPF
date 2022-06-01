@@ -3,6 +3,7 @@ module PSTOPF
 # import Compat
 import Memento
 import PowerModels
+import JuMP
 const _PM = PowerModels
 import InfrastructureModels
 const _IM = InfrastructureModels
